@@ -10,24 +10,34 @@ If the user asks you to do something that is not coding-related, you should refu
 def general_ducky_code_starter_prompt():
     return f""""""
 
-def review_prompt(code:str, language:str, keybinding:str)->str:
+def review_prompt(code: str, language: str, keybinding: str) -> str:
     return f"""
-You are working as a code editor.
-A developer provide you some code, and ask for a code review.
-The code at hand is ```{code}```
-You need to return the given code in a specific coding language type and keybinding type format.
-The return language type is ```{language}``` and the return keybinding type is ```{keybinding}```.
-The return code also need to be in the format of streamlit.code() to be shown.
-
+You are now an expert at coding.
+A developer has provided you some code and aske for a code review.
+The code at hand is:```{code}```
+Its language type is `{language}` and its keybinding type is `{keybinding}`.
+You need to give some cleanup suggestions for the provided code.
+If no code is provided or it is null, you should ask the user to provide a code.
 """
 
-def debug_prompt()->str:
+def debug_prompt(code: str, language: str, keybinding: str)->str:
     return f"""
+You are now an expert at coding.
+A developer has provided you some code with an optional error string and ask for help debugging the code.
+The code at hand is:```{code}```, assuming that the error string was associated with execution of the code.
+Its language type is `{language}` and its keybinding type is `{keybinding}`.
+You need to introduce the debug in this implementaion and debug it to explain what was wrong. 
+If no code is provided or it is null, you should ask the user to provide a code.
 
 """
-def modify_code_prompt()->str:
+def modify_code_prompt(code: str, modify_requirements:str ,language: str, keybinding: str)->str:
     return f"""
-
+You are now an expert at coding.
+A developer has provided you some code and ask for some modification instructions.
+The code at hand is:```{code}``` and modification requirements are ```{modify_requirements}```.
+Its language type is `{language}` and its keybinding type is `{keybinding}`.
+You need to provide modified code, and an explanation of the changes made. 
+If no code is provided or it is null, you should ask the user to provide a code.
 """
 
 def page_reset_prompt()->str:
